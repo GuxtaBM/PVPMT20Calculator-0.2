@@ -1,8 +1,8 @@
 
-let  pvi, pvn, pmn, nivel, sann;
+let  pvi, pvn, pmn, sann, bonus;
 
 
-
+// Selecionar Classe, mudando assim o pv inicial, pv por nivel e a mana
 document.getElementById("classe").addEventListener('change', function(){
     const escolha = this.value;
 
@@ -13,14 +13,12 @@ document.getElementById("classe").addEventListener('change', function(){
         pvn = 2;
         pmn = 6;
 
-
     }
     else if(escolha === "arcf"){
 
         pvi = 8;
         pvn = 2;
-        pmn = 6;
-                
+        pmn = 6; 
 
     }
     else if(escolha === "arcm"){
@@ -28,7 +26,6 @@ document.getElementById("classe").addEventListener('change', function(){
         pvi = 8;
         pvn = 2;
         pmn = 6;
-                
 
     }
     else if(escolha ==="barb"){
@@ -145,36 +142,43 @@ document.getElementById("classe").addEventListener('change', function(){
 });
 
 
-
+//funcao para clicar e executar o calculo
 document.getElementById("calcular").onclick = function calculo(){
 
-nivel = Number(document.getElementById("nivel").value)
+    const nivel = Number(document.getElementById("nivel").value)
 
-const forc = Number(document.getElementById("for").value)
-const des = Number(document.getElementById("des").value)
-let cons = Number(document.getElementById("cons").value)
-const int = Number(document.getElementById("int").value)
-const sab = Number(document.getElementById("sab").value)
-const car = Number(document.getElementById("car").value)
+    const forc = Number(document.getElementById("for").value)
+    const des = Number(document.getElementById("des").value)
+    let cons = Number(document.getElementById("cons").value)
+    const int = Number(document.getElementById("int").value)
+    const sab = Number(document.getElementById("sab").value)
+    const car = Number(document.getElementById("car").value)
+
+
+    //elfo ganha +1 de PM por nivel
+    const elfo = (document.getElementById("elfo").checked);
+        if(elfo==true){bonus=1}
+        else{bonus=0}
+
+
 
     if(cons<=0){
         cons =1
     }
 
-
+    //Se nenhuma classe for selecionada o pv inicial será nulo, assim não dando para executar o calculo dando o aviso:
     if(!pvi){
         document.getElementById("Cla").style.display = 'block';
         document.getElementById("Cla").style.color = 'red'
     }
     else{document.getElementById("Cla").style.display = 'none'
 
-let pv = pvi+(cons+pvn)*nivel;
-let mana = pmn * nivel;
+    let pv = pvi+(cons+pvn)*nivel;
+    let mana = (pmn+bonus) * nivel;
 
 
-
-document.getElementById("pm").textContent = `PM: ${mana}`
-document.getElementById("pv").textContent = `PM: ${pv}`
+    document.getElementById("PV").textContent = `PM: ${pv}`
+    document.getElementById("PM").textContent = `PM: ${mana}`
 
     } 
 }
