@@ -110,21 +110,34 @@ document.getElementById("calcular").onclick = function calculo(){
      
 }
 
+const sub10pv = document.getElementById("sub10pv")
 const subpv = document.getElementById("subpv")
 const addpv = document.getElementById("addpv")
+const add10pv = document.getElementById("add10pv")
 const fullL= document.getElementById("fullL")
 
 
+const sub10pm = document.getElementById("sub10pm")
 const subpm = document.getElementById("subpm")
 const addpm = document.getElementById("addpm")
 const fullM = document.getElementById("fullM")
+const add10pm = document.getElementById("add10pm")
 
+const sub10san = document.getElementById("sub10san")
 const subsan = document.getElementById("subsan")
 const addsan = document.getElementById("addsan")
 const fsan = document.getElementById("fsan")
-
+const add10san = document.getElementById("add10san")
 
 // PV mais menos e full life
+sub10pv.onclick = function(){
+
+    pvmod = pvmod-5
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+}
 subpv.onclick = function(){
 
     pvmod--
@@ -136,6 +149,15 @@ subpv.onclick = function(){
 addpv.onclick = function(){
 
     pvmod++
+    if(pvmod>pv){pvmod=pv}
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+}
+add10pv.onclick = function(){
+
+    pvmod=pvmod+5
     if(pvmod>pv){pvmod=pv}
 
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
@@ -154,6 +176,16 @@ fullL.onclick = function(){
 }
 
 // PM mais menos e full pm
+
+
+sub10pm.onclick = function(){
+
+    pmmod = pmmod-5
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+}
 
 subpm.onclick = function(){
 
@@ -177,6 +209,16 @@ addpm.onclick = function(){
 
 }
 
+add10pm.onclick = function(){
+
+    pmmod=pmmod+5
+    if(pmmod>pv){pmmod=pm}
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+}
+
 fullM.onclick = function(){
 
     pmmod=mana;
@@ -189,6 +231,14 @@ fullM.onclick = function(){
 
 //sanidade mais menos e full sanidade
 
+sub10san.onclick = function(){
+
+    sanmod = sanmod-5
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+}
 subsan.onclick = function(){
 
     sanmod--
@@ -207,7 +257,15 @@ addsan.onclick = function(){
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
     
 }
+add10san.onclick = function(){
 
+    sanmod = sanmod+5
+    if(sanmod>san){sanmod=san}
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+}
 fsan.onclick = function(){
 
     sanmod=san;

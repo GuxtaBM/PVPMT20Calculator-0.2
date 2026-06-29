@@ -637,6 +637,14 @@ body {
 }
 .btn-recurso:active { transform: scale(0.93); }
 
+.btn-minus10, .btn-plus10 {
+    font-size: 0.65rem;
+    width: 34px;
+    height: 34px;
+    letter-spacing: -0.03em;
+}
+
+
 .btn-full {
     font-family: 'Tormenta', serif;
     font-size: 0.6rem;
