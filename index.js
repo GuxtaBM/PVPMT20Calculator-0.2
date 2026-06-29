@@ -1,171 +1,90 @@
 
-let  pvi, pvn, pmn, sann, bonus;
+let  pvi, pvn, pmn, san, bonus, bonusM=0;
+
+let pv = 0, mana = 0;
+let pvmod=0, pmmod=0 ,sanmod=0;
+
+let bonusV=0, bonusVI=0
+
+
 
 
 // Selecionar Classe, mudando assim o pv inicial, pv por nivel e a mana
 document.getElementById("classe").addEventListener('change', function(){
     const escolha = this.value;
 
-
-    if(escolha === "arcb"){
-
-        pvi = 8;
-        pvn = 2;
-        pmn = 6;
-
+switch (escolha) {
+        case "arcb": case "arcf": case "arcm":
+            pvi = 8; pvn = 2; pmn = 6; break;
+        case "barb":
+            pvi = 24; pvn = 6; pmn = 3; break;
+        case "bardo": case "fra": case "lad": case "tre":
+            pvi = 12; pvn = 3; pmn = 4; break;
+        case "bucaneiro": case "mir":
+            pvi = 16; pvn = 4; pmn = 3; break;
+        case "cav": case "gue": case "lut": case "pal": case "samurai":
+            pvi = 20; pvn = 5; pmn = 3; break;
+        case "cle":
+            pvi = 16; pvn = 4; pmn = 5; break;
+        case "inv":
+            pvi = 12; pvn = 4; pmn = 4; break;
+        default: // cac, dru, mis, nob
+            pvi = 16; pvn = 4; pmn = 4; break;
     }
-    else if(escolha === "arcf"){
-
-        pvi = 8;
-        pvn = 2;
-        pmn = 6; 
-
-    }
-    else if(escolha === "arcm"){
-
-        pvi = 8;
-        pvn = 2;
-        pmn = 6;
-
-    }
-    else if(escolha ==="barb"){
-
-        pvi = 24;
-        pvn = 6;
-        pmn = 3;
-    }
-    else if(escolha ==="bardo"){
-
-        pvi = 12;
-        pvn = 3;
-        pmn = 4;
-    }
-    else if(escolha ==="bucaneiro"){
-
-        pvi = 16;
-        pvn = 4;
-        pmn = 3;
-    }
-    else if(escolha ==="cac"){
-
-        pvi = 16;
-        pvn = 4;
-        pmn = 4;
-    }  
-    else if(escolha ==="cav"){
-
-        pvi = 20;
-        pvn = 5;
-        pmn = 3;
-    }
-     else if(escolha ==="cle"){
-
-        pvi = 16;
-        pvn = 4;
-        pmn = 5;
-    }     
-     
-    else if(escolha ==="dru"){
-
-        pvi = 16;
-        pvn = 4;
-        pmn = 4;
-    }
-    else if(escolha ==="fra"){
-
-        pvi = 12;
-        pvn = 3;
-        pmn = 6;
-    }
-    else if(escolha ==="gue"){
-
-        pvi = 20;
-        pvn = 5;
-        pmn = 3;
-    }
-    else if(escolha ==="inv"){
-
-        pvi = 12;
-        pvn = 4;
-        pmn = 4;
-     }
-    else if(escolha ==="lad"){
-
-        pvi = 12;
-        pvn = 3;
-        pmn = 4;
-    }
-    else if(escolha ==="mir"){
-
-        pvi = 16;
-        pvn = 4;
-        pmn = 3;
-    }
-    else if(escolha ==="mis"){
-
-        pvi = 16;
-        pvn = 4;
-        pmn = 4;
-    }
-    
-    else if(escolha ==="lut"){
-
-        pvi = 20;
-        pvn = 5;
-        pmn = 3;
-    }
-    else if(escolha ==="nob"){
-
-        pvi = 16;
-        pvn = 4;
-        pmn = 4;
-    }
-    else if(escolha ==="pal"){
-
-        pvi = 20;
-        pvn = 5;
-        pmn = 3;
-    }
-    else if(escolha ==="samurai"){
-
-        pvi = 20;
-        pvn = 5;
-        pmn = 3;
-    }
-    else if(escolha==="nada"){
-        
-        pvi = 0
-
-    }
-  
-
 });
+
+
+
+
 
 
 //funcao para clicar e executar o calculo
 document.getElementById("calcular").onclick = function calculo(){
 
     const nivel = Number(document.getElementById("nivel").value)
-
+//atributos
     const forc = Number(document.getElementById("for").value)
     const des = Number(document.getElementById("des").value)
     let cons = Number(document.getElementById("cons").value)
-    const int = Number(document.getElementById("int").value)
-    const sab = Number(document.getElementById("sab").value)
+    let int = Number(document.getElementById("int").value)
+    let sab = Number(document.getElementById("sab").value)
     const car = Number(document.getElementById("car").value)
+ 
+    bonus = 0;
+    bonusM = 0;
+    bonusVI = 0
+    bonusV = 0
 
 
-    //elfo ganha +1 de PM por nivel
-    const elfo = (document.getElementById("elfo").checked);
-        if(elfo==true){bonus=1}
-        else{bonus=0}
+//Raças
+    const raca = document.getElementById("raca").value
 
+    switch(raca) {
+        case "anao":
+            bonusVI = 3;
+            bonusV = 1;
+            break;
+        case "elfo":
+            bonus = 1;
+            break;
+        case "mE":
+           bonusM = Math.floor(nivel / 2);
+            break;
+        
+}
 
 
     if(cons<=0){
         cons =1
     }
+    if(sab<=0){
+        sab =1
+    }
+    if(int<=0){
+        int =1
+    }
 
+    
     //Se nenhuma classe for selecionada o pv inicial será nulo, assim não dando para executar o calculo dando o aviso:
     if(!pvi){
         document.getElementById("Cla").style.display = 'block';
@@ -173,15 +92,129 @@ document.getElementById("calcular").onclick = function calculo(){
     }
     else{document.getElementById("Cla").style.display = 'none'
 
-    let pv = pvi+(cons+pvn)*nivel;
-    let mana = (pmn+bonus) * nivel;
+    pv = pvi+bonusVI+(cons+pvn+bonusV)*nivel;
+    mana = (pmn+bonus)*nivel+bonusM;
+    san= nivel*(3+sab+int);
 
 
-    document.getElementById("PV").textContent = `PM: ${pv}`
-    document.getElementById("PM").textContent = `PM: ${mana}`
+    sanmod=san;
+    pvmod=pv;
+    pmmod=mana;
 
-    } 
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+
+    
+    }
+     
+}
+
+const subpv = document.getElementById("subpv")
+const addpv = document.getElementById("addpv")
+const fullL= document.getElementById("fullL")
+
+
+const subpm = document.getElementById("subpm")
+const addpm = document.getElementById("addpm")
+const fullM = document.getElementById("fullM")
+
+const subsan = document.getElementById("subsan")
+const addsan = document.getElementById("addsan")
+const fsan = document.getElementById("fsan")
+
+
+// PV mais menos e full life
+subpv.onclick = function(){
+
+    pvmod--
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+}
+addpv.onclick = function(){
+
+    pvmod++
+    if(pvmod>pv){pvmod=pv}
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+}
+
+fullL.onclick = function(){
+
+    pvmod=pv;
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+
+}
+
+// PM mais menos e full pm
+
+subpm.onclick = function(){
+
+    pmmod--
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}` 
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+
+
+}
+addpm.onclick = function(){
+
+    pmmod++
+    if(pmmod>mana){pmmod=mana}
+
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+
+}
+
+fullM.onclick = function(){
+
+    pmmod=mana;
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
 }
 
 
+//sanidade mais menos e full sanidade
+
+subsan.onclick = function(){
+
+    sanmod--
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+}
+addsan.onclick = function(){
+
+    sanmod++
+    if(sanmod>san){sanmod=san}
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    
+}
+
+fsan.onclick = function(){
+
+    sanmod=san;
+
+    document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+    document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+    document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+
+};
 

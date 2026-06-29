@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/6292e224ce.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header class="header">
+        
+            <h1 class="titulo">La calculadora</h1>
+            <a class= saibamais href="saibamais.html"><i class="fa-solid fa-scroll fa-2xl" style="color: rgb(128, 0, 0);"></i></a>
+    </header>
+    <br><br>
+
+
+
+    
+
+    
+
+        <label>For</label>
+        <input class="atributo" id="for">
+        
+        <label>Des</label>
+        <input class="atributo" id="des">
+        
+        <label>Cons</label>
+        <input class="atributo" id="cons">
+        
+        <label>Int</label>
+        <input class="atributo" id="int">
+        
+        <label>Sab</label>
+        <input class="atributo" id="sab">
+        
+        <label>Car</label>
+        <input class="atributo" id="car">
+    <br><br>
+        <label>Qual seu nivel?</label>
+        <input min=1 max=20 id="nivel" type="number">
+
+
+
+
+        
+    <select name="classe" id="classe">
+        
+        <option value="nada">Selecione sua classe</option>
+        <option value="arcb">Arcanista(Bruxo)</option>
+        <option value="arcf">Arcanista(Feiticeiro)</option>
+        <option value="arm">Arcanista(Mago)</option>
+        <option value="barb">Barbaro</option>
+        <option value="bardo">Bardo</option>
+        <option value="bucaneiro">Bucaneiro</option>
+        <option value="cac">Caçador</option>
+        <option value="cav">Cavaleiro</option>
+        <option value="cle">Clérigo</option> 
+        <option value="dru">Druida</option>
+        <option value="fra">Frade</option>
+        <option value="gue">Guerreiro</option>
+        <option value="inv">Inventor</option>
+        <option value="lad">Ladino</option>
+        <option value="mir">Miragem</option>
+        <option value="mis">Místico</option>
+        <option value="lut">Lutador</option>
+        <option value="nob">Nobre</option>
+        <option value="pal">Paladino</option>
+        <option value="sam">Samurai</option>
+        <option value="tre">Treinador</option>
+        
+    </select>
+    <select name="raca" id="raca">
+
+        <option value=" ">Selecione sua Raça</option>
+        <option value="anao">Anão</option>
+        <option value="bug">Bugbear</option>
+        <option value="cen">Centauro</option>
+        <option value="cer">Ceratops</option>
+        <option value="dah">Dahllan</option>
+        <option value="Eir">Eiradaan</option>
+        <option value="elfo">Elfo</option>
+        <option value="lef">Lefou</option>
+        <option value="ga">Galokk</option>
+        <option value="gno">Gnoll</option>
+        <option value="goblin">Goblin</option>
+        <option value="go">Golem</option>
+        <option value="ha">Harpia</option>
+        <option value="hob">Hobgoblin</option>
+        <option value="hy">Hynne</option>
+        <option value="hum">Humano</option>
+        <option value="kai">Kaijin</option>
+        <option value="kap">Kappa</option>
+        <option value="kall">Kallyanach</option>
+        <option value="kli">Kliren</option>
+        <option value="ko">Kobolds</option>
+        <option value="ma">Mashin</option>
+        <option value="med">Medusa</option>
+        <option value="mE">Meio-Elfo</option>
+        <option value="mO">Meio-Orc</option>
+        <option value="mina">Minauro</option>
+        <option value="min">Minotauro</option>
+        <option value="nez">Nezumi</option>
+        <option value="ogro">Ogro</option>
+        <option value="orc">Orc</option>
+        <option value="os">Osteon</option>
+        <option value="pte">Ptero</option>
+        <option value="qa">Qareen</option>
+        <option value="sa">Satiro</option>
+        <option value="ser">Sereia/Tritão</option>
+        <option value="sil">Sílfide</option>
+        <option value="sur">Suraggel</option>
+        <option value="ta">Tabrachi</option>
+        <option value="te">Tengu</option>
+        <option value="trog">Troglodita</option>
+        <option value="vel">Velocis</option>
+        <option value="vor">Voracis</option>
+        <option value="yid">Yidishan</option>
+        
+    </select>
+
+
+<br>
+
+    <label style="display: none;" id="Cla">Você precisa selecionar uma classe</label>
+
+<br>
+
+<button id="calcular">Calcular</button>
+
+<br><br>
+<!-- PV mais e menos-->
+<button id="subpv">-</button>
+    <label id="PV">PV: </label>
+<button id="addpv">+</button>
+<br>
+<button id="fullL">Full Life</button>
+<br>
+<!-- PM mais e menos-->
+<button id="subpm">-</button>
+    <label id="PM">PM: </label>
+<button id="addpm">+</button>
+<br>
+<button id="fullM">Full Mana</button>
+
+
+
+
+
+ <br>
+<button id="subsan">-</button>
+    <label id="SAN">San: </label>
+<button id="addsan">+</button>
+<br>
+<button id="fsan">Full Life</button>
+<br>
+</body>
+
+
+
+
+<script src=index.js></script>
+
+</html>

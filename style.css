@@ -1,0 +1,63 @@
+    @font-face {
+    font-family: 'Tormenta';
+    src: url('./Tormenta.ttf') format('truetype');
+    }
+    header { 
+        position: relative; /* Adicione isso para o ícone se alinhar em relação ao header */
+        text-align: center;
+        color: rgb(245, 173, 41);
+        /* Corrigindo seu shadow: horizontal vertical blur cor */
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.5); 
+        font-family: 'Tormenta';
+        grid-area: hd;
+        padding: 20px 0; /* Padding em cima e embaixo, 0 nas laterais */
+        min-height: 80px; /* Garante uma altura consistente */
+        display: flex;
+        justify-content: center; /* Centraliza o título horizontalmente */
+        align-items: center;     /* Centraliza o título verticalmente */
+    }
+
+    .saibamais {
+        position: absolute; /* Tira o ícone do fluxo, ele não empurra mais o título */
+        right: 40px;        /* Fixa a distância da direita */
+        top: 50%;           /* Move para o meio da altura */
+        transform: translateY(-50%); /* Ajuste fino para centralizar o ícone verticalmente */
+        
+        /* Remova o padding-top e display:flex daqui, não precisa mais */
+        padding: 0; 
+    }
+
+    header{
+    background-image: linear-gradient(
+        55deg,
+        hsl(0deg 100% 37%) 0%,
+        hsl(0deg 95% 37%) 0%,
+        hsl(0deg 94% 37%) 0%,
+        hsl(0deg 92% 37%) -1%,
+        hsl(0deg 91% 36%) 0%,
+        hsl(0deg 89% 36%) 0%,
+        hsl(0deg 88% 36%) 0%,
+        hsl(0deg 87% 35%) 1%,
+        hsl(0deg 86% 35%) 1%,
+        hsl(0deg 85% 34%) 2%,
+        hsl(0deg 84% 34%) 4%,
+        hsl(0deg 83% 33%) 5%,
+        hsl(0deg 82% 33%) 7%,
+        hsl(0deg 82% 31%) 10%,
+        hsl(0deg 82% 30%) 13%,
+        hsl(0deg 82% 28%) 17%,
+        hsl(0deg 82% 27%) 21%,
+        hsl(0deg 82% 25%) 26%,
+        hsl(0deg 82% 24%) 32%,
+        hsl(0deg 82% 22%) 40%,
+        hsl(0deg 82% 20%) 48%,
+        hsl(0deg 83% 17%) 59%,
+        hsl(0deg 83% 15%) 70%,
+        hsl(0deg 84% 12%) 84%,
+        hsl(0deg 89% 7%) 100%
+    );
+
+    }
+
+
+    @keyframes text-shadow-pop-bottom{0%{text-shadow:0 0 #522626,0 0 #522626,0 0 #522626,0 0 #522626,0 0 #522626,0 0 #522626,0 0 #522626,0 0 #522626;transform:translateY(0)}100%{text-shadow:0 1px #522626,0 2px #522626,0 3px #522626,0 4px #522626,0 5px #522626,0 6px #522626,0 7px #522626,0 8px #522626;transform:translateY(-8px)}}
