@@ -212,7 +212,7 @@ addpm.onclick = function(){
 add10pm.onclick = function(){
 
     pmmod=pmmod+5
-    if(pmmod>pm){pmmod=pm}
+    if(pmmod>mana){pmmod=mana}
 
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
