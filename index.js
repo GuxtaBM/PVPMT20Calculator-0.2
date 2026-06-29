@@ -1,5 +1,5 @@
 
-let  pvi, pvn, pmn, san, bonus, bonusM=0;
+let  pvi, pvn, pmn, san=0, bonus, bonusM=0;
 
 let pv = 0, mana = 0;
 let pvmod=0, pmmod=0 ,sanmod=0;

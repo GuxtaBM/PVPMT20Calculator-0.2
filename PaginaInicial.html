@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeepRolling - Ficha Tormenta20</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/6292e224ce.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <img src="KeepRolling.png" alt="KeepRolling" class="logo">
+            <a class="saibamais-link" href="saibamais.html" title="Saiba mais">
+                <i class="fa-solid fa-scroll fa-6xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ATRIBUTOS -->
+        <section class="panel atributos-panel">
+            <div class="panel-title">Atributos</div>
+            <div class="atributos-grid">
+                <div class="atributo-box">
+                    <label class="atr-label">FOR</label>
+                    <input class="atributo" id="for" type="number" min="1" max="30">
+                </div>
+                <div class="atributo-box">
+                    <label class="atr-label">DES</label>
+                    <input class="atributo" id="des" type="number" min="1" max="30">
+                </div>
+                <div class="atributo-box">
+                    <label class="atr-label">CONS</label>
+                    <input class="atributo" id="cons" type="number" min="1" max="30">
+                </div>
+                <div class="atributo-box">
+                    <label class="atr-label">INT</label>
+                    <input class="atributo" id="int" type="number" min="1" max="30">
+                </div>
+                <div class="atributo-box">
+                    <label class="atr-label">SAB</label>
+                    <input class="atributo" id="sab" type="number" min="1" max="30">
+                </div>
+                <div class="atributo-box">
+                    <label class="atr-label">CAR</label>
+                    <input class="atributo" id="car" type="number" min="1" max="30">
+                </div>
+            </div>
+        </section>
+
+        <!-- NIVEL -->
+        <section class="panel nivel-panel">
+            <div class="panel-title">Nível</div>
+            <div class="nivel-dots" id="nivel-dots"></div>
+            <!-- hidden input to keep JS compatibility -->
+            <input type="hidden" id="nivel" value="1">
+        </section>
+
+        <!-- CLASSE E RAÇA -->
+        <section class="panel selects-panel">
+            <div class="scroll-select-wrapper">
+                <div class="scroll-cap left"></div>
+                <div class="scroll-body">
+                    <select name="classe" id="classe">
+                        <option value="nada">Selecione sua classe</option>
+                        <option value="arcb">Arcanista (Bruxo)</option>
+                        <option value="arcf">Arcanista (Feiticeiro)</option>
+                        <option value="arm">Arcanista (Mago)</option>
+                        <option value="barb">Bárbaro</option>
+                        <option value="bardo">Bardo</option>
+                        <option value="bucaneiro">Bucaneiro</option>
+                        <option value="cac">Caçador</option>
+                        <option value="cav">Cavaleiro</option>
+                        <option value="cle">Clérigo</option>
+                        <option value="dru">Druida</option>
+                        <option value="fra">Frade</option>
+                        <option value="gue">Guerreiro</option>
+                        <option value="inv">Inventor</option>
+                        <option value="lad">Ladino</option>
+                        <option value="mir">Miragem</option>
+                        <option value="mis">Místico</option>
+                        <option value="lut">Lutador</option>
+                        <option value="nob">Nobre</option>
+                        <option value="pal">Paladino</option>
+                        <option value="sam">Samurai</option>
+                        <option value="tre">Treinador</option>
+                    </select>
+                </div>
+                <div class="scroll-cap right"></div>
+            </div>
+
+            <div class="scroll-select-wrapper">
+                <div class="scroll-cap left"></div>
+                <div class="scroll-body">
+                    <select name="raca" id="raca">
+                        <option value=" ">Selecione sua Raça</option>
+                        <option value="anao">Anão</option>
+                        <option value="bug">Bugbear</option>
+                        <option value="cen">Centauro</option>
+                        <option value="cer">Ceratops</option>
+                        <option value="dah">Dahllan</option>
+                        <option value="Eir">Eiradaan</option>
+                        <option value="elfo">Elfo</option>
+                        <option value="lef">Lefou</option>
+                        <option value="ga">Galokk</option>
+                        <option value="gno">Gnoll</option>
+                        <option value="goblin">Goblin</option>
+                        <option value="go">Golem</option>
+                        <option value="ha">Harpia</option>
+                        <option value="hob">Hobgoblin</option>
+                        <option value="hy">Hynne</option>
+                        <option value="hum">Humano</option>
+                        <option value="kai">Kaijin</option>
+                        <option value="kap">Kappa</option>
+                        <option value="kall">Kallyanach</option>
+                        <option value="kli">Kliren</option>
+                        <option value="ko">Kobolds</option>
+                        <option value="ma">Mashin</option>
+                        <option value="med">Medusa</option>
+                        <option value="mE">Meio-Elfo</option>
+                        <option value="mO">Meio-Orc</option>
+                        <option value="mina">Minauro</option>
+                        <option value="min">Minotauro</option>
+                        <option value="nez">Nezumi</option>
+                        <option value="ogro">Ogro</option>
+                        <option value="orc">Orc</option>
+                        <option value="os">Osteon</option>
+                        <option value="pte">Ptero</option>
+                        <option value="qa">Qareen</option>
+                        <option value="sa">Satiro</option>
+                        <option value="ser">Sereia/Tritão</option>
+                        <option value="sil">Sílfide</option>
+                        <option value="sur">Suraggel</option>
+                        <option value="ta">Tabrachi</option>
+                        <option value="te">Tengu</option>
+                        <option value="trog">Troglodita</option>
+                        <option value="vel">Velocis</option>
+                        <option value="vor">Voracis</option>
+                        <option value="yid">Yidishan</option>
+                    </select>
+                </div>
+                <div class="scroll-cap right"></div>
+            </div>
+        </section>
+
+        <!-- AVISO CLASSE -->
+        <label style="display:none; color:#ff4444; font-family:'Tormenta',serif; text-align:center; display:none;" id="Cla">Selecione uma classe antes de calcular</label>
+
+        <!-- CALCULAR -->
+        <div class="calcular-wrapper">
+            <button id="calcular" class="btn-calcular">Calcular</button>
+        </div>
+
+        <!-- RECURSOS: PV, PM, SAN -->
+        <section class="recursos-section">
+
+            <!-- PV -->
+            <div class="recurso-card">
+                <div class="recurso-titulo pv-titulo">Pontos de Vida</div>
+                <div class="recurso-controls">
+                    <button class="btn-recurso btn-minus" id="subpv">-</button>
+                    <div class="frasco-wrapper">
+                        <div class="frasco pv-frasco" id="frasco-pv">
+                            <div class="frasco-glass">
+                                <div class="frasco-liquid pv-liquid" id="liquid-pv">
+                                    <div class="wave-surface" id="wave-pv"></div>
+                                </div>
+                                <div class="frasco-shine"></div>
+                                <div class="frasco-rim"></div>
+                            </div>
+                            <div class="frasco-neck"></div>
+                            <div class="frasco-stopper"></div>
+                        </div>
+                        <div class="recurso-valor" id="PV">PV: -/-</div>
+                    </div>
+                    <button class="btn-recurso btn-plus" id="addpv">+</button>
+                    <button class="btn-full pv-full" id="fullL">Full</button>
+                </div>
+            </div>
+
+            <!-- PM -->
+            <div class="recurso-card">
+                <div class="recurso-titulo pm-titulo">Pontos de Mana</div>
+                <div class="recurso-controls">
+                    <button class="btn-recurso btn-minus" id="subpm">-</button>
+                    <div class="frasco-wrapper">
+                        <div class="frasco pm-frasco" id="frasco-pm">
+                            <div class="frasco-glass">
+                                <div class="frasco-liquid pm-liquid" id="liquid-pm">
+                                    <div class="wave-surface" id="wave-pm"></div>
+                                </div>
+                                <div class="frasco-shine"></div>
+                                <div class="frasco-rim"></div>
+                            </div>
+                            <div class="frasco-neck"></div>
+                            <div class="frasco-stopper pm-stopper"></div>
+                        </div>
+                        <div class="recurso-valor" id="PM">PM: -/-</div>
+                    </div>
+                    <button class="btn-recurso btn-plus" id="addpm">+</button>
+                    <button class="btn-full pm-full" id="fullM">Full</button>
+                </div>
+            </div>
+
+            <!-- SANIDADE -->
+            <div class="recurso-card">
+                <div class="recurso-titulo san-titulo">Sanidade</div>
+                <div class="recurso-controls">
+                    <button class="btn-recurso btn-minus" id="subsan">-</button>
+                    <div class="frasco-wrapper">
+                        <div class="frasco san-frasco" id="frasco-san">
+                            <div class="frasco-glass">
+                                <div class="frasco-liquid san-liquid" id="liquid-san">
+                                    <div class="wave-surface" id="wave-san"></div>
+                                </div>
+                                <div class="frasco-shine"></div>
+                                <div class="frasco-rim"></div>
+                            </div>
+                            <div class="frasco-neck"></div>
+                            <div class="frasco-stopper san-stopper"></div>
+                        </div>
+                        <div class="recurso-valor" id="SAN">SAN: -/-</div>
+                    </div>
+                    <button class="btn-recurso btn-plus" id="addsan">+</button>
+                    <button class="btn-full san-full" id="fsan">Full</button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="index.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>
