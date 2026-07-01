@@ -1,4 +1,3 @@
-
 let  pvi, pvn, pmn, san=0, bonus, bonusM=0;
 
 let pv = 0, mana = 0;
@@ -7,6 +6,72 @@ let pvmod=0, pmmod=0 ,sanmod=0;
 let bonusV=0, bonusVI=0
 
 
+// atriMana é o atributo pra somar com a mana. Exemplo mana+car, mana+sab
+// 0 = nenhum 1= int, 2= sab, 3=car
+let atriMana
+
+
+// >>>>>>>>>>>>>>>>>>>>>>>> CÓDIGO ADICIONADO (INÍCIO) <<<<<<<<<<<<<<<<<<<<<<<<
+// Chave usada para guardar os dados no localStorage do navegador
+const CHAVE_STORAGE = "rpgCalcDados";
+
+// Salva no localStorage tudo que é preciso para restaurar a ficha depois
+function salvarDados(){
+    const dados = {
+        classe: document.getElementById("classe") ? document.getElementById("classe").value : "",
+        raca: document.getElementById("raca") ? document.getElementById("raca").value : "",
+        nivel: document.getElementById("nivel") ? document.getElementById("nivel").value : "",
+        for_: document.getElementById("for") ? document.getElementById("for").value : "",
+        des: document.getElementById("des") ? document.getElementById("des").value : "",
+        cons: document.getElementById("cons") ? document.getElementById("cons").value : "",
+        int_: document.getElementById("int") ? document.getElementById("int").value : "",
+        sab: document.getElementById("sab") ? document.getElementById("sab").value : "",
+        car: document.getElementById("car") ? document.getElementById("car").value : "",
+        pvi, pvn, pmn, atriMana,
+        bonus, bonusM, bonusV, bonusVI,
+        pv, mana, san,
+        pvmod, pmmod, sanmod
+    };
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(dados));
+}
+
+// Carrega do localStorage e devolve os dados salvos (ou null se não houver nada salvo)
+function carregarDados(){
+    const dadosSalvos = localStorage.getItem(CHAVE_STORAGE);
+    if(!dadosSalvos){ return null; }
+    return JSON.parse(dadosSalvos);
+}
+
+// Aplica os dados salvos nos campos da tela e nas variáveis do jogo
+function restaurarDados(){
+    const dados = carregarDados();
+    if(!dados){ return; }
+
+    if(document.getElementById("classe")) document.getElementById("classe").value = dados.classe;
+    if(document.getElementById("raca")) document.getElementById("raca").value = dados.raca;
+    if(document.getElementById("nivel")) document.getElementById("nivel").value = dados.nivel;
+    if(document.getElementById("for")) document.getElementById("for").value = dados.for_;
+    if(document.getElementById("des")) document.getElementById("des").value = dados.des;
+    if(document.getElementById("cons")) document.getElementById("cons").value = dados.cons;
+    if(document.getElementById("int")) document.getElementById("int").value = dados.int_;
+    if(document.getElementById("sab")) document.getElementById("sab").value = dados.sab;
+    if(document.getElementById("car")) document.getElementById("car").value = dados.car;
+
+    pvi = dados.pvi; pvn = dados.pvn; pmn = dados.pmn; atriMana = dados.atriMana;
+    bonus = dados.bonus; bonusM = dados.bonusM; bonusV = dados.bonusV; bonusVI = dados.bonusVI;
+    pv = dados.pv; mana = dados.mana; san = dados.san;
+    pvmod = dados.pvmod; pmmod = dados.pmmod; sanmod = dados.sanmod;
+
+    if(pv !== undefined && document.getElementById("PV")){
+        document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
+        document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
+        document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    }
+}
+
+// Assim que a página carregar, tenta restaurar os dados salvos
+document.addEventListener("DOMContentLoaded", restaurarDados);
+// >>>>>>>>>>>>>>>>>>>>>>>>> CÓDIGO ADICIONADO (FIM) <<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 // Selecionar Classe, mudando assim o pv inicial, pv por nivel e a mana
@@ -14,24 +79,36 @@ document.getElementById("classe").addEventListener('change', function(){
     const escolha = this.value;
 
 switch (escolha) {
-        case "arcb": case "arcf": case "arcm":
-            pvi = 8; pvn = 2; pmn = 6; break;
+        case "arcb": case "arcm":
+            pvi = 8; pvn = 2; pmn = 6; atriMana=1; break;
+        case "arcf":
+            pvi = 8; pvn = 2; pmn = 6; atriMana=3; break;    
         case "barb":
-            pvi = 24; pvn = 6; pmn = 3; break;
-        case "bardo": case "fra": case "lad": case "tre":
-            pvi = 12; pvn = 3; pmn = 4; break;
+            pvi = 24; pvn = 6; pmn = 3; atriMana=0; break;
+        case  "lad": case "tre":
+            pvi = 12; pvn = 3; pmn = 4; atriMana=0;
+        case "bardo":
+            pvi = 12; pvn = 3; pmn = 4; atriMana=3; break;
+        case "fra":
+            pvi = 12; pvn = 3; pmn = 4; atriMana=2; break;
         case "bucaneiro": case "mir":
-            pvi = 16; pvn = 4; pmn = 3; break;
+            pvi = 16; pvn = 4; pmn = 3; atriMana=0; break;
         case "cav": case "gue": case "lut": case "pal": case "samurai":
-            pvi = 20; pvn = 5; pmn = 3; break;
+            pvi = 20; pvn = 5; pmn = 3; atriMana=0; break;
         case "cle":
-            pvi = 16; pvn = 4; pmn = 5; break;
+            pvi = 16; pvn = 4; pmn = 5; atriMana=2; break;
+        case "dru": case "mis": 
+            pvi = 16; pvn = 4; pmn = 4; atriMana=2; break;
         case "inv":
-            pvi = 12; pvn = 4; pmn = 4; break;
-        default: // cac, dru, mis, nob
-            pvi = 16; pvn = 4; pmn = 4; break;
+            pvi = 12; pvn = 4; pmn = 4; atriMana=0;break;
+        default: // cac, nob
+            pvi = 16; pvn = 4; pmn = 4; atriMana=0; break;
+
+            
     }
+    salvarDados(); 
 });
+
 
 
 
@@ -40,6 +117,8 @@ switch (escolha) {
 
 //funcao para clicar e executar o calculo
 document.getElementById("calcular").onclick = function calculo(){
+    
+    
 
     const nivel = Number(document.getElementById("nivel").value)
 //atributos
@@ -61,27 +140,32 @@ document.getElementById("calcular").onclick = function calculo(){
 
     switch(raca) {
         case "anao":
-            bonusVI = 3;
-            bonusV = 1;
+            bonusVI = bonusVI+3;
+            bonusV = bonusV + 1;
             break;
         case "elfo":
-            bonus = 1;
+            bonus = bonus+1;
             break;
         case "mE":
-           bonusM = Math.floor(nivel / 2);
+           bonusM = bonusM+Math.floor(nivel / 2);
             break;
         
 }
 
 
-    if(cons<=0){
-        cons =1
+   
+    // 0 = nenhum 1= int, 2= sab, 3=car
+    if(atriMana===1){
+        bonusM=bonusM+int
     }
-    if(sab<=0){
-        sab =1
+    if(atriMana===2){
+        bonusM=bonusM+sab 
     }
-    if(int<=0){
-        int =1
+    if(atriMana===3){
+        bonusM=bonusM+car
+    }
+    if(atriMana===0){
+        bonusM=bonusM+0
     }
 
     
@@ -104,7 +188,8 @@ document.getElementById("calcular").onclick = function calculo(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
-
+    salvarDados(); // <<< LINHA ADICIONADA: salva o resultado do cálculo
+    
     
     }
      
@@ -137,6 +222,7 @@ sub10pv.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 }
 subpv.onclick = function(){
 
@@ -145,6 +231,7 @@ subpv.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 }
 addpv.onclick = function(){
 
@@ -154,6 +241,7 @@ addpv.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 }
 add10pv.onclick = function(){
 
@@ -163,6 +251,7 @@ add10pv.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 }
 
 fullL.onclick = function(){
@@ -172,6 +261,7 @@ fullL.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 
 }
 
@@ -181,19 +271,23 @@ fullL.onclick = function(){
 sub10pm.onclick = function(){
 
     pmmod = pmmod-5
+    if(pmmod<0){pmmod=0}
 
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 }
 
 subpm.onclick = function(){
 
     pmmod--
+    if(pmmod<0){pmmod=0}
 
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}` 
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 
 
 }
@@ -206,6 +300,7 @@ addpm.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 
 }
 
@@ -217,6 +312,7 @@ add10pm.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 }
 
 fullM.onclick = function(){
@@ -226,6 +322,7 @@ fullM.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados();  
 }
 
 
@@ -234,18 +331,22 @@ fullM.onclick = function(){
 sub10san.onclick = function(){
 
     sanmod = sanmod-5
+    if(sanmod<0){sanmod=0}
 
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 }
 subsan.onclick = function(){
 
     sanmod--
+    if(sanmod<0){sanmod=0}
 
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 }
 addsan.onclick = function(){
 
@@ -255,6 +356,7 @@ addsan.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
     
 }
 add10san.onclick = function(){
@@ -265,6 +367,7 @@ add10san.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 }
 fsan.onclick = function(){
 
@@ -273,6 +376,6 @@ fsan.onclick = function(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
+    salvarDados(); 
 
 };
-

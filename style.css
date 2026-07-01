@@ -281,9 +281,9 @@ body {
 
 .nivel-dot.alcancado .dot-num,
 .nivel-dot.atual .dot-num {
-    color: var(--ink);
+     color: #ffe656;
+    text-shadow: 0 1px 3px rgba(94, 0, 245, 0.8);
     font-weight: bold;
-    text-shadow: 0 1px 0 rgba(255,255,200,0.5);
 }
 
 /* === SELECTS PERGAMINHO === */
