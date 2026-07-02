@@ -178,7 +178,7 @@ document.getElementById("calcular").onclick = function calculo(){
 
     pv = pvi+bonusVI+(cons+pvn+bonusV)*nivel;
     mana = (pmn+bonus)*nivel+bonusM;
-    san= nivel*(3+sab+int);
+    san= nivel*(5+sab+int);
 
 
     sanmod=san;
