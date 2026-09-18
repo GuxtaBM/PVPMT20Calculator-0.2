@@ -176,9 +176,9 @@ document.getElementById("calcular").onclick = function calculo(){
     }
     else{document.getElementById("Cla").style.display = 'none'
 
-    pv = pvi+bonusVI+(cons+pvn+bonusV)*nivel;
-    mana = (pmn+bonus)*nivel+bonusM;
-    san= nivel*(5+sab+int);
+    pv = pvi + bonusVI + (cons + pvn + bonusV) * (nivel - 1);
+    mana = (pmn + bonus) * nivel + bonusM;
+    san = nivel * (5 + sab + int);
 
 
     sanmod=san;
@@ -188,7 +188,7 @@ document.getElementById("calcular").onclick = function calculo(){
     document.getElementById("PV").textContent = `PV: ${pvmod}/${pv}`
     document.getElementById("PM").textContent = `PM: ${pmmod}/${mana}`
     document.getElementById("SAN").textContent = `SAN: ${sanmod}/${san}`
-    salvarDados(); // <<< LINHA ADICIONADA: salva o resultado do cálculo
+    salvarDados(); 
     
     
     }
